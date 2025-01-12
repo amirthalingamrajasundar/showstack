@@ -1,0 +1,54 @@
+# Node.js / React (Frontend)
+node_modules/
+build/
+dist/
+.docker/
+.env
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+/.pnp/
+.pnp.js
+
+# React specific (IDE/editor generated files)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# FastAPI / Python (Backend)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+.venv/
+venv/
+env.bak/
+*.db
+*.sqlite3
+
+# Docker
+docker-compose.override.yml
+docker-compose.yml
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Pytest cache
+.cache/
+
+# FastAPI specific
+instance/
+*.bak
