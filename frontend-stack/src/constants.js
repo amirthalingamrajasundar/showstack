@@ -1,4 +1,4 @@
-export const API_URL = "https://backend-stack-142896340374.asia-south1.run.app/compute-pagerank";
+export const API_URL = "http://localhost:8080/compute-pagerank";
 
 export const PROFILE_LINKS = {
     "email": "amirthalingamrajasundar@gmail.com",
@@ -50,10 +50,26 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.1,
                 0.1
             ],
-            "error": "NA"
+            "error": null
         },
         {
             "iteration": 1,
+            "rank": [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1
+            ],
+            "error": 0.3683333333333333
+        },
+        {
+            "iteration": 2,
             "rank": [
                 0.15383333333333332,
                 0.0405,
@@ -66,10 +82,10 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.09433333333333334,
                 0.09716666666666668
             ],
-            "error": 0.3683333333333333
+            "error": 0.15349111111111122
         },
         {
-            "iteration": 2,
+            "iteration": 3,
             "rank": [
                 0.16081750000000006,
                 0.03183000000000001,
@@ -82,10 +98,10 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.11994194444444445,
                 0.05799111111111112
             ],
-            "error": 0.15349111111111122
+            "error": 0.049644045370370544
         },
         {
-            "iteration": 3,
+            "iteration": 4,
             "rank": [
                 0.1508004388888889,
                 0.03515309861111112,
@@ -98,10 +114,10 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.13423058611111116,
                 0.05712906157407409
             ],
-            "error": 0.049644045370370544
+            "error": 0.025470038287037193
         },
         {
-            "iteration": 4,
+            "iteration": 5,
             "rank": [
                 0.15478721328935188,
                 0.03597206841666668,
@@ -114,10 +130,10 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.12939371486574075,
                 0.05895208784567903
             ],
-            "error": 0.025470038287037193
+            "error": 0.011180212572206888
         },
         {
-            "iteration": 5,
+            "iteration": 6,
             "rank": [
                 0.15322185381391207,
                 0.03581024196800156,
@@ -130,10 +146,10 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.1314063895524576,
                 0.059040854471448065
             ],
-            "error": 0.011180212572206888
+            "error": 0.005699549908105547
         },
         {
-            "iteration": 6,
+            "iteration": 7,
             "rank": [
                 0.15398691852376364,
                 0.03580417327532236,
@@ -146,10 +162,10 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.13037005299163967,
                 0.058995193874610094
             ],
-            "error": 0.005699549908105547
+            "error": 0.0028013927243874318
         },
         {
-            "iteration": 7,
+            "iteration": 8,
             "rank": [
                 0.15362106120583002,
                 0.03582382520931534,
@@ -162,10 +178,10 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.13084337182164177,
                 0.05897943524747907
             ],
-            "error": 0.0028013927243874318
+            "error": 0.0013354988343869945
         },
         {
-            "iteration": 8,
+            "iteration": 9,
             "rank": [
                 0.15377669096722438,
                 0.03581125093543207,
@@ -178,10 +194,10 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.13062518576039908,
                 0.05899885051315483
             ],
-            "error": 0.0013354988343869945
+            "error": 0.0005978352900387895
         },
         {
-            "iteration": 9,
+            "iteration": 10,
             "rank": [
                 0.153716849661765,
                 0.03581958392095989,
@@ -194,10 +210,10 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.1307145112724628,
                 0.058987378892928224
             ],
-            "error": 0.0005978352900387895
+            "error": 0.00025248018877082473
         },
         {
-            "iteration": 10,
+            "iteration": 11,
             "rank": [
                 0.15373695359309553,
                 0.035813994429936435,
@@ -210,7 +226,7 @@ export const DEFAULT_PAGE_RANK_RESULT = {
                 0.13068123050176794,
                 0.05899370959247317
             ],
-            "error": 0.00025248018877082473
+            "error": 9.81633202518234e-05
         }
     ],
     "convergence_reached": true

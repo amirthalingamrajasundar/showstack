@@ -98,18 +98,18 @@ const PageRankViewResult = ({
 
   const getColor = (index) => `hsl(${(index / 10) * 360}, 70%, 50%)`;
 
-  console.log("Is Converged ? " + parseFloat(pageRankResult.iterations[currentIteration].error) <= parseFloat(convergenceThreshold));
-  console.log("error: " + parseFloat(pageRankResult.iterations[currentIteration].error));
-  console.log("Convergence threshold: " + convergenceThreshold);
-
   return (
     <Box sx={{ padding: 3 }}>
         <Typography variant="body1" gutterBottom>
-            Use the below buttons to step through each iteration to see how the PageRank values evolve for each page in the connectivity matrix.
+            Use the buttons in the bottom right corner to step through each iteration to see how the PageRank values evolve for each page in the connectivity matrix.
         </Typography>
         <Box 
+            position= "fixed"
+            bottom= "5px"
+            right= "5px" 
             display="flex" 
-            justifyContent="left" 
+            justifyContent="left"
+            zIndex="1000"
             sx={{ 
                 marginBottom: 5
              }}>
@@ -255,11 +255,11 @@ const PageRankViewResult = ({
                         </TableHead>
                         <TableBody>
                         {pageRankTableData.map((row, index) => (
-                            <TableRow key={row.pageIndex}>
-                                <TableCell align="center">{index + 1}</TableCell>
-                                <TableCell align="center">{row.page}</TableCell>
-                                <TableCell align="center">{(parseFloat(row.rank * 100)).toFixed(4)}%</TableCell>
-                                <TableCell align="center">{row.index + 1}</TableCell>
+                            <TableRow key={index}>
+                                <TableCell key={`${index}-cell1`} align="center">{index + 1}</TableCell>
+                                <TableCell key={`${index}-cell2`} align="center">{row.page}</TableCell>
+                                <TableCell key={`${index}-cell3`} align="center">{(parseFloat(row.rank * 100)).toFixed(4)}%</TableCell>
+                                <TableCell key={`${index}-cell4`} align="center">{row.index + 1}</TableCell>
                             </TableRow>
                         ))}
                         </TableBody>

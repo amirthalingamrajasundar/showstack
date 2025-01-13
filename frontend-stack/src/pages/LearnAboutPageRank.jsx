@@ -33,9 +33,15 @@ const LearnAboutPageRank = () => {
         <Typography component="li" variant="body1">
           <strong>Connectivty Matrix: </strong> The connectivity matrix 'G' models the mini internet that we will run the Page Rank algorithm on. Let 'n' be the number of pages. The network is represented using an adjaceny matrix. The matrix G can be huge, but it is often very sparse . If 'G[i][j]' is 1, then there is a link from page 'j' to page 'i'. The rows of the matrix represent the in-links for the i th page. The columns of the matrix represent the out-links for the j th page. The visualizer restricts the number of pages to 10 for brevity. The following is a sample connectivity matrix.
         </Typography>
-        <Box sx={{textAlign: "center", marginBottom: "5px"}}>
-          <img src='connectivity_matrix.png' alt='connectivity_matrix' width="800px" height="150px"/>
-        </Box>
+        <BlockMath math={`
+          \\begin{array}{c|cccc}
+          & google.com & instagram.com & wikipedia.org & chatgpt.com \\\\ \\hline
+          google.com & 0 & 1 & 0 & 1 \\\\
+          instagram.com & 1 & 0 & 0 & 1 \\\\
+          wikipedia.org & 0 & 0 & 0 & 0 \\\\
+          chatgpt.com & 0 & 0 & 0 & 1
+          \\end{array}
+        `} />
         <Typography component="li" variant="body1">
           <strong>Link follow probability: </strong> The Link follow  probability 'p' the probability with which the user follows a link from the current page. This is also '1 - teleportProb'. This is a decimal number between 0 and 1. The visualizer sets this value to the default of '0.85'. But, this can be changed in the 'Configure' tab.
         </Typography>

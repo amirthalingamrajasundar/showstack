@@ -54,7 +54,15 @@ const Portfolio = () => {
               <Code />
             </ListItemIcon>
             <ListItemText
-              primary="PageRank Visualizer"
+              primary={
+                <Link
+                  href="/page-rank"
+                  target="_blank"
+                  underline="hover"
+                >
+                  PageRank Visualizer
+                </Link>
+              }
               secondary="A web application demonstrating the PageRank algorithm with interactive visualizations and charts."
             />
           </ListItem>
