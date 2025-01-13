@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:8000/compute-pagerank";
+export const API_URL = "https://backend-stack-142896340374.asia-south1.run.app/compute-pagerank";
 
 export const PROFILE_LINKS = {
     "email": "amirthalingamrajasundar@gmail.com",

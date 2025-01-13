@@ -5,7 +5,7 @@ import Portfolio from './pages/Portfolio';
 
 const App = () => {
   return (
-    <Router>
+    <Router basename='/'>
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/page-rank" element={<PageRank />} />
