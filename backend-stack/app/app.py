@@ -13,6 +13,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[ 
         "https://amirth.dev",
+        "https://www.amirth.dev",
         "https://showstack-six.vercel.app"
     ],  # Or ["*"] to allow all origins
     allow_credentials=True,
