@@ -1,0 +1,9 @@
+From 'backend-stack' folder
+docker build -t backend-stack .
+
+To test in local
+docker run -p 8080:8080 backend-stack
+
+docker tag backend-stack gcr.io/amirthalingam/backend-stack
+
+docker push gcr.io/amirthalingam/backend-stack

@@ -35,7 +35,7 @@ def pageRank(G, p=0.85, epsilon=1e-4, max_iter=100):
         error = np.linalg.norm(x_new - x, ord=1)
         iterations.append({
            'iteration': k + 1,
-           'rank': x.tolist(),
+           'rank': x_new.tolist(),
            'error': error
         })
         if error < epsilon:
