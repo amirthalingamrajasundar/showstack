@@ -137,7 +137,7 @@ const PageRankViewResult = ({
             <Grid size={{ xs: 12, md: 4 }}>
                 <Paper elevation={3} style={{ padding: 20 }}>
                     <Typography variant="h1" gutterBottom sx={{fontSize: '25px'}}>
-                        Iteration: {currentIteration + 1}
+                        Iteration: {currentIteration}
                     </Typography>
                 </Paper>
             </Grid>
