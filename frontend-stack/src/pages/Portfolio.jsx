@@ -24,12 +24,13 @@ const Portfolio = () => {
 
       {/* Body */}
       <Box sx={{ flex: 4, backgroundColor: '#ffffff', padding: 4 }}>
+
         {/* Introduction */}
         <Typography variant="h4" gutterBottom>
           About Me
         </Typography>
         <Typography variant="body1" gutterBottom>
-          I am Amirthalingam Rajasundar, a Senior Software Engineer with over 5 years of experience specializing in building robust applications using Java, JavaScript, Perl, Python, and cloud technologies like AWS. I enjoy designing and building applications.
+        I am Amirthalingam Rajasundar, a Senior Software Engineer with over 5 years of experience specializing in backend development and building scalable web applications. I am proficient in modern technologies such as AWS, Java, NodeJS, React, and cloud-native applications. I enjoy designing and developing innovative solutions that make a difference. My goal is to leverage my technical expertise and passion for software development to drive innovation.
         </Typography>
 
         {/* Skills */}
@@ -37,12 +38,37 @@ const Portfolio = () => {
           Skills
         </Typography>
         <Grid container spacing={2}>
-          {['Java', 'JavaScript', 'Python', 'AWS', 'React', 'PostgreSQL', 'MongoDB', 'Spring', 'Perl'].map((skill) => (
+          {['Java', 'JavaScript', 'Python', 'AWS', 'React', 'PostgreSQL', 'Oracle', 'Spring', 'Perl'].map((skill) => (
             <Grid xs={6} sm={4} key={skill}>
               <Chip label={skill}/>
             </Grid>
           ))}
         </Grid>
+
+        {/* Education */}
+        <Typography variant="h4" gutterBottom sx={{ marginTop: 4 }}>
+          Education
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <School />
+            </ListItemIcon>
+            <ListItemText
+              primary="Masters in Artificial Intelligence"
+              secondary="Indian Institute of Science, IN, 2024 – present"
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <School />
+            </ListItemIcon>
+            <ListItemText
+              primary="Bachelors in Computer Science and Engineering"
+              secondary="Thiagarajar College Of Engineering, IN, 2015 – 2019"
+            />
+          </ListItem>
+        </List>
 
         {/* Projects */}
         <Typography variant="h4" gutterBottom sx={{ marginTop: 4 }}>
@@ -79,7 +105,7 @@ const Portfolio = () => {
             </ListItemIcon>
             <ListItemText
               primary="Building Applications"
-              secondary="Exploring tech and buiding applications"
+              secondary="Exploring tech and building applications"
             />
           </ListItem>
           <ListItem>

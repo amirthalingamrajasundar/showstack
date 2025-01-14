@@ -18,6 +18,7 @@ import PageRankConfigure from './PageRankConfigure';
 import PageRankViewResut from './PageRankViewResult';
 
 const PageRankVisualizer = () => {
+
   const [tabIndex, setTabIndex] = React.useState(0);
 
   const [pageNames, setPageNames] = React.useState(DEFAULT_PAGE_NAMES);
@@ -57,7 +58,6 @@ const PageRankVisualizer = () => {
 
   const computePageRank = async () => {
     // Validate and handle form submission
-    console.log("computePageRank: ", connectivityMatrix);
 
     let isSuccess = true;
 
@@ -72,7 +72,7 @@ const PageRankVisualizer = () => {
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload),
       });

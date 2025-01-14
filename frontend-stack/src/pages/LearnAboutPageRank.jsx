@@ -8,9 +8,9 @@ const LearnAboutPageRank = () => {
     <Box sx={{ padding: 3 }}>
       <Typography variant='body2' sx={{fontSize: "15px"}}>
         This section will try to explain Page Rank algorithm in an easy to understand way. 
-        I learnt this algorithm in Linear Algebra course under the instruction of <a href='https://ece.iisc.ac.in/~spchepuri/'>Sundeep</a> during my MTech at IISc.
+        I learnt this algorithm in Linear Algebra course under the instruction of <a href='https://ece.iisc.ac.in/~spchepuri/'>Dr. Sundeep</a> during my MTech at IISc.
         It uses concepts like Eigen value, Eigen vector, Norms, Stochastic matrices, Perron Forbenius theorem, Power Iterations etc from Linear Algebra and concepts like Probability, Product probability, Markov Chains etc from Random Processes.
-        If you want to see the algorithm in action, jump to the 'Visualizer' tab.      
+        If you want to see the algorithm in action, jump to the <strong>'Visualizer'</strong> tab as I have already loaded some presets.      
       </Typography>
       <br/>
       <br/>
