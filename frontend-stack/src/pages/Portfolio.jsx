@@ -92,6 +92,74 @@ const Portfolio = () => {
               secondary="A web application demonstrating the PageRank algorithm with interactive visualizations and charts."
             />
           </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <Code />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Link
+                  href="/indic-commerce"
+                  target="_blank"
+                  underline="hover"
+                >
+                  Indic Commerce
+                </Link>
+              }
+              secondary="A Voice based agentic ecommerce system for Regional Indian Languages"
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <Code />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Link
+                  href="https://github.com/amirthalingamrajasundar/ClusterCompress"
+                  target="_blank"
+                  underline="hover"
+                >
+                  Cluster Compress
+                </Link>
+              }
+              secondary="k-means clustering on images"
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <Code />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Link
+                  href="https://github.com/amirthalingamrajasundar/TitanicML"
+                  target="_blank"
+                  underline="hover"
+                >
+                  Survival Prediction
+                </Link>
+              }
+              secondary="Survival prediction using various machine learning models"
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <Code />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Link
+                  href="https://colab.research.google.com/drive/1p53d4iYA2gVfC1jdG8ggamT3z0lDlC05?usp=sharing"
+                  target="_blank"
+                  underline="hover"
+                >
+                  Optimization techniques using NumPy
+                </Link>
+              }
+              secondary="A Jupyter notebook demonstrating optimization techniques using NumPy"
+            />
+          </ListItem>
         </List>
 
         {/* Interests */}

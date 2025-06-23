@@ -1,5 +1,7 @@
 export const API_URL = "https://backend-stack-142896340374.asia-south1.run.app/compute-pagerank";
 
+export const INDIC_COMMERCE_API_URL = "https://indic-commerce-142896340374.asia-south1.run.app";
+
 export const PROFILE_LINKS = {
     "email": "amirthalingamrajasundar@gmail.com",
     "linkedin": "https://www.linkedin.com/in/amirthalingam-rajasundar/",
