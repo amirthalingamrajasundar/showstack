@@ -1,8 +1,16 @@
 {
-    "version": 2,
+    "version": 3,
     "routes": [
         {
         "src": "/page-rank",
+        "dest": "/index.html"
+        },
+        {
+        "src": "/indic-commerce",
+        "dest": "/index.html"
+        },
+        {
+        "src": "/indic-commerce/products",
         "dest": "/index.html"
         }
     ]
