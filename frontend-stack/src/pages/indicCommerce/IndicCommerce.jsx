@@ -362,8 +362,74 @@ const IndicCommerce = () => {
         </Container>
       </Box>
 
-      {/* Featured Products */}
+      {/* System Architecture Section */}
       <Box sx={{ padding: '80px 0', backgroundColor: 'var(--bg)' }}>
+        <Container maxWidth="lg">
+          <Typography variant="h3" component="h2" sx={{ 
+            marginBottom: 6, 
+            color: 'var(--dark)', 
+            textAlign: 'center',
+            position: 'relative',
+            '&::after': {
+              content: '""',
+              display: 'block',
+              width: '80px',
+              height: '4px',
+              backgroundColor: 'var(--primary)',
+              margin: '20px auto 0',
+              borderRadius: '2px'
+            }
+          }}>
+            System Architecture
+          </Typography>
+          
+          <Box sx={{ 
+            maxWidth: '900px', 
+            margin: '0 auto', 
+            boxShadow: '0 4px 15px rgba(0,0,0,0.1)', 
+            borderRadius: '12px', 
+            overflow: 'hidden',
+            backgroundColor: 'white',
+            transition: 'transform 0.3s ease',
+            '&:hover': {
+              transform: 'translateY(-5px)',
+              boxShadow: '0 8px 25px rgba(0,0,0,0.15)'
+            }
+          }}>
+            <img 
+              src="/indic_commerce_arch.png" 
+              alt="IndicCommerce System Architecture Diagram" 
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block'
+              }}
+              onError={(e) => {
+                // Fallback if image doesn't exist
+                e.target.src = 'https://via.placeholder.com/900x600/128C7E/ffffff?text=System+Architecture+Diagram';
+              }}
+            />
+          </Box>
+          
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              textAlign: 'center', 
+              marginTop: 4, 
+              color: 'var(--text)',
+              maxWidth: '700px',
+              margin: '32px auto 0',
+              lineHeight: 1.8
+            }}
+          >
+            Our robust architecture seamlessly integrates voice recognition, natural language processing, 
+            and multilingual support to deliver personalized shopping experiences through WhatsApp.
+          </Typography>
+        </Container>
+      </Box>
+
+      {/* Featured Products */}
+      <Box sx={{ padding: '80px 0', backgroundColor: 'white' }}>
         <Container maxWidth="lg">
           <Typography variant="h3" component="h2" sx={{ 
             marginBottom: 6, 
@@ -439,7 +505,7 @@ const IndicCommerce = () => {
         </Container>
       </Box>
 
-      {/* Demo Video Section */}
+      {/* Demo screenshot Section */}
       <Box sx={{ padding: '80px 0', backgroundColor: 'var(--light)' }}>
         <Container maxWidth="lg">
           <Typography variant="h3" component="h2" sx={{ 
@@ -447,23 +513,32 @@ const IndicCommerce = () => {
             color: 'var(--dark)', 
             textAlign: 'center'
           }}>
-            Watch Our Demo
+            See IndicCommerce in Action
           </Typography>
           <Box sx={{ 
             maxWidth: '800px', 
             margin: '0 auto', 
             boxShadow: '0 4px 15px rgba(0,0,0,0.2)', 
             borderRadius: '8px', 
-            overflow: 'hidden' 
+            overflow: 'hidden',
+            transition: 'transform 0.3s ease',
+            '&:hover': {
+              transform: 'scale(1.02)',
+              boxShadow: '0 8px 25px rgba(0,0,0,0.3)'
+            }
           }}>
-            <iframe 
-              width="100%" 
-              height="400" 
-              src="https://www.youtube.com/embed/emeawSCY63k" 
-              title="IndicCommerce Demo Video" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
+            <img 
+              src="/indic_commerce.png" 
+              alt="IndicCommerce Demo Screenshot" 
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block'
+              }}
+              onError={(e) => {
+                // Fallback if image doesn't exist
+                e.target.src = 'https://via.placeholder.com/800x450/25D366/ffffff?text=IndicCommerce+Demo';
+              }}
             />
           </Box>
         </Container>
@@ -488,6 +563,9 @@ const IndicCommerce = () => {
             </Typography>
             <Typography component="a" href="#" sx={{ color: 'white', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
               Terms of Service
+            </Typography>
+            <Typography component="a" href="https://github.com/amirthalingamrajasundar/IndicCommerce" target="_blank" rel="noopener noreferrer" sx={{ color: 'white', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+              GitHub
             </Typography>
             <Typography component="a" href="#" sx={{ color: 'white', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
               Contact
