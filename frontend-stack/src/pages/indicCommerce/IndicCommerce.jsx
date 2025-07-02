@@ -397,7 +397,7 @@ const IndicCommerce = () => {
             }
           }}>
             <img 
-              src="https://storage.googleapis.com/indic-commerce/screenshots/indic_commerce_arch.png" 
+              src="/indic_commerce_arch.png" 
               alt="IndicCommerce System Architecture Diagram" 
               style={{
                 width: '100%',
@@ -524,7 +524,7 @@ const IndicCommerce = () => {
             }
           }}>
             <img 
-              src="https://storage.googleapis.com/indic-commerce/screenshots/indic_commerce.png" 
+              src="/indic_commerce.png" 
               alt="IndicCommerce Demo Screenshot" 
               style={{
                 width: '100%',
