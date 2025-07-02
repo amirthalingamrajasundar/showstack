@@ -397,16 +397,12 @@ const IndicCommerce = () => {
             }
           }}>
             <img 
-              src="/indic_commerce_arch.png" 
+              src="https://storage.googleapis.com/indic-commerce/screenshots/indic_commerce_arch.png" 
               alt="IndicCommerce System Architecture Diagram" 
               style={{
                 width: '100%',
                 height: 'auto',
                 display: 'block'
-              }}
-              onError={(e) => {
-                // Fallback if image doesn't exist
-                e.target.src = 'https://via.placeholder.com/900x600/128C7E/ffffff?text=System+Architecture+Diagram';
               }}
             />
           </Box>
@@ -528,16 +524,12 @@ const IndicCommerce = () => {
             }
           }}>
             <img 
-              src="/indic_commerce.png" 
+              src="https://storage.googleapis.com/indic-commerce/screenshots/indic_commerce.png" 
               alt="IndicCommerce Demo Screenshot" 
               style={{
                 width: '100%',
                 height: 'auto',
                 display: 'block'
-              }}
-              onError={(e) => {
-                // Fallback if image doesn't exist
-                e.target.src = 'https://via.placeholder.com/800x450/25D366/ffffff?text=IndicCommerce+Demo';
               }}
             />
           </Box>
