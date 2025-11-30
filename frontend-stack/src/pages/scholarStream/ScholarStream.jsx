@@ -10,123 +10,63 @@ const ScholarStream = () => {
   const [selectedPaper, setSelectedPaper] = useState(null);
   const [recommendations, setRecommendations] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [recommendationsLoading, setRecommendationsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
+  const [hasNext, setHasNext] = useState(false);
+  const [hasPrevious, setHasPrevious] = useState(false);
   const [isSearchMode, setIsSearchMode] = useState(false);
+  const [error, setError] = useState(null);
 
   const PAPERS_PER_PAGE = 6;
 
-  // Mock data for development
-  const mockPapers = [
-    {
-      id: "2103.15538",
-      title: "Attention Is All You Need: A Comprehensive Survey of Transformer Architecture",
-      authors: ["Ashish Vaswani", "Noam Shazeer", "Niki Parmar", "Jakob Uszkoreit"],
-      abstract: "The Transformer architecture has revolutionized natural language processing and beyond. This paper provides a comprehensive survey of attention mechanisms and their applications in various domains including computer vision, speech processing, and multimodal learning.",
-      categories: ["cs.CL", "cs.LG"],
-      submitter: "Ashish Vaswani",
-      comments: "Published in NIPS 2017, 15 pages, 16 figures",
-      journal_ref: "Advances in Neural Information Processing Systems 30 (2017)",
-      doi: "10.1000/182",
-      versions: [
-        { version: "v1", created: "Mon, 29 Mar 2021 17:58:04 GMT" }
-      ]
-    },
-    {
-      id: "2006.11239", 
-      title: "GPT-3: Language Models are Few-Shot Learners",
-      authors: ["Tom B. Brown", "Benjamin Mann", "Nick Ryder", "Melanie Subbiah"],
-      abstract: "Recent work has demonstrated substantial gains on many NLP tasks and benchmarks by pre-training on a large corpus of text followed by fine-tuning on a specific task. While typically task-agnostic in architecture, this method still requires task-specific fine-tuning datasets of thousands or tens of thousands of examples.",
-      categories: ["cs.CL"],
-      submitter: "Tom B. Brown",
-      comments: "Published in NeurIPS 2020, 72 pages",
-      journal_ref: "Advances in Neural Information Processing Systems 33 (2020)",
-      doi: "10.1000/183", 
-      versions: [
-        { version: "v1", created: "Thu, 22 May 2020 17:50:14 GMT" }
-      ]
-    },
-    {
-      id: "1706.03762",
-      title: "Attention Is All You Need",
-      authors: ["Ashish Vaswani", "Noam Shazeer", "Niki Parmar"],
-      abstract: "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism.",
-      categories: ["cs.CL", "cs.LG"],
-      submitter: "Ashish Vaswani",
-      comments: "15 pages, 5 figures",
-      journal_ref: null,
-      doi: null,
-      versions: [
-        { version: "v1", created: "Mon, 12 Jun 2017 17:57:34 GMT" }
-      ]
-    },
-    {
-      id: "2010.11929",
-      title: "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
-      authors: ["Alexey Dosovitskiy", "Lucas Beyer", "Alexander Kolesnikov"],
-      abstract: "While the Transformer architecture has become the de-facto standard for natural language processing tasks, its applications to computer vision remain limited. In vision, attention is either applied in conjunction with convolutional networks, or used to replace certain components of convolutional networks while keeping their overall structure intact.",
-      categories: ["cs.CV", "cs.AI", "cs.LG"],
-      submitter: "Alexey Dosovitskiy",
-      comments: "Published at ICLR 2021",
-      journal_ref: "International Conference on Learning Representations (2021)",
-      doi: "10.1000/184",
-      versions: [
-        { version: "v1", created: "Thu, 22 Oct 2020 17:58:04 GMT" }
-      ]
-    },
-    {
-      id: "1810.04805",
-      title: "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding", 
-      authors: ["Jacob Devlin", "Ming-Wei Chang", "Kenton Lee", "Kristina Toutanova"],
-      abstract: "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.",
-      categories: ["cs.CL"],
-      submitter: "Jacob Devlin",
-      comments: "13 pages",
-      journal_ref: "Proceedings of NAACL-HLT 2019",
-      doi: "10.1000/185",
-      versions: [
-        { version: "v1", created: "Fri, 11 Oct 2018 18:33:37 GMT" }
-      ]
-    },
-    {
-      id: "2005.14165",
-      title: "Language Models are Few-Shot Learners",
-      authors: ["Tom B. Brown", "Benjamin Mann", "Nick Ryder"],
-      abstract: "Recent work has demonstrated substantial gains on many NLP tasks and benchmarks by pre-training on a large corpus of text followed by fine-tuning on a specific task. While typically task-agnostic in architecture, this method still requires task-specific fine-tuning datasets.",
-      categories: ["cs.CL", "cs.AI"],
-      submitter: "Tom B. Brown", 
-      comments: "72 pages, 16 figures",
-      journal_ref: null,
-      doi: null,
-      versions: [
-        { version: "v1", created: "Thu, 28 May 2020 17:50:14 GMT" }
-      ]
-    }
-  ];
-
-  // Load initial papers
+  // Load initial papers when component mounts or model changes
   useEffect(() => {
-    loadInitialPapers();
+    // Don't load initial papers - wait for user to search
+    setPapers([]);
+    setIsSearchMode(false);
   }, []);
 
-  const loadInitialPapers = async () => {
+  // Reload search when model changes and we're in search mode
+  useEffect(() => {
+    if (isSearchMode && searchQuery.trim()) {
+      performSearch(searchQuery, 1);
+    }
+  }, [selectedModel]);
+
+  const performSearch = async (query, page) => {
     setLoading(true);
+    setError(null);
+    
     try {
-      // In a real app, this would be an API call
-      // const response = await fetch(`${SCHOLAR_STREAM_API_URL}${SCHOLAR_STREAM_ENDPOINTS.SEARCH}?page=1&limit=${PAPERS_PER_PAGE}`);
-      // const data = await response.json();
+      const params = new URLSearchParams({
+        q: query,
+        model: selectedModel,
+        page: String(page),
+        limit: String(PAPERS_PER_PAGE)
+      });
       
-      // Using mock data for now
-      setTimeout(() => {
-        setPapers(mockPapers);
-        setTotalResults(mockPapers.length);
-        setTotalPages(Math.ceil(mockPapers.length / PAPERS_PER_PAGE));
-        setLoading(false);
-        setIsSearchMode(false);
-      }, 1000);
-    } catch (error) {
-      console.error('Error loading papers:', error);
+      const response = await fetch(`${SCHOLAR_STREAM_API_URL}${SCHOLAR_STREAM_ENDPOINTS.SEARCH}?${params}`);
+      const result = await response.json();
+      
+      if (result.success) {
+        setPapers(result.data.papers);
+        setTotalResults(result.data.pagination.total_results);
+        setTotalPages(result.data.pagination.total_pages);
+        setCurrentPage(result.data.pagination.current_page);
+        setHasNext(result.data.pagination.has_next);
+        setHasPrevious(result.data.pagination.has_previous);
+        setIsSearchMode(true);
+      } else {
+        setError(result.error?.message || 'Search failed');
+        setPapers([]);
+      }
+    } catch (err) {
+      console.error('Error searching papers:', err);
+      setError('Network error. Please check if the API is running.');
+      setPapers([]);
+    } finally {
       setLoading(false);
     }
   };
@@ -134,54 +74,32 @@ const ScholarStream = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
-
-    setLoading(true);
-    setCurrentPage(1);
-    
-    try {
-      // In a real app, this would be an API call
-      // const response = await fetch(`${SCHOLAR_STREAM_API_URL}${SCHOLAR_STREAM_ENDPOINTS.SEARCH}?q=${encodeURIComponent(searchQuery)}&model=${selectedModel}&page=1&limit=${PAPERS_PER_PAGE}`);
-      // const data = await response.json();
-      
-      // Mock search functionality
-      const filteredPapers = mockPapers.filter(paper => 
-        paper.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        paper.abstract.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        paper.authors.some(author => author.toLowerCase().includes(searchQuery.toLowerCase()))
-      );
-      
-      setTimeout(() => {
-        setPapers(filteredPapers);
-        setTotalResults(filteredPapers.length);
-        setTotalPages(Math.ceil(filteredPapers.length / PAPERS_PER_PAGE));
-        setLoading(false);
-        setIsSearchMode(true);
-      }, 1500);
-    } catch (error) {
-      console.error('Error searching papers:', error);
-      setLoading(false);
-    }
+    performSearch(searchQuery, 1);
   };
 
   const loadRecommendations = async (paperId) => {
-    setLoading(true);
+    setRecommendationsLoading(true);
     try {
-      // In a real app, this would be an API call
-      // const response = await fetch(`${SCHOLAR_STREAM_API_URL}${SCHOLAR_STREAM_ENDPOINTS.RECOMMENDATIONS}?paper_id=${paperId}&model=${selectedModel}&limit=5`);
-      // const data = await response.json();
+      const params = new URLSearchParams({
+        paper_id: paperId,
+        model: selectedModel,
+        limit: '3'
+      });
       
-      // Mock recommendations - return different papers excluding the current one
-      const availablePapers = mockPapers.filter(paper => paper.id !== paperId);
-      const shuffled = availablePapers.sort(() => 0.5 - Math.random());
-      const mockRecommendations = shuffled.slice(0, 3);
+      const response = await fetch(`${SCHOLAR_STREAM_API_URL}${SCHOLAR_STREAM_ENDPOINTS.RECOMMENDATIONS}?${params}`);
+      const result = await response.json();
       
-      setTimeout(() => {
-        setRecommendations(mockRecommendations);
-        setLoading(false);
-      }, 1000);
-    } catch (error) {
-      console.error('Error loading recommendations:', error);
-      setLoading(false);
+      if (result.success) {
+        setRecommendations(result.data.recommendations);
+      } else {
+        console.error('Error loading recommendations:', result.error?.message);
+        setRecommendations([]);
+      }
+    } catch (err) {
+      console.error('Error loading recommendations:', err);
+      setRecommendations([]);
+    } finally {
+      setRecommendationsLoading(false);
     }
   };
 
@@ -196,8 +114,20 @@ const ScholarStream = () => {
   };
 
   const handlePageChange = (page) => {
-    setCurrentPage(page);
-    // In a real app, you would make an API call here to load the specific page
+    if (page >= 1 && page <= totalPages) {
+      performSearch(searchQuery, page);
+    }
+  };
+
+  const formatSimilarityScore = (score) => {
+    if (score === null || score === undefined) return null;
+    return `${Math.round(score * 100)}%`;
+  };
+
+  const truncateAbstract = (abstract, maxLength = 200) => {
+    if (!abstract) return '';
+    if (abstract.length <= maxLength) return abstract;
+    return abstract.substring(0, maxLength).trim() + '...';
   };
 
   const getCategoryIcon = (categories) => {
@@ -291,46 +221,67 @@ const ScholarStream = () => {
         <div className="paper-meta">
           <h3 className="paper-title">{paper.title}</h3>
           <p className="paper-authors">{formatAuthors(paper.authors)}</p>
-          <span className="paper-category">{formatCategory(paper.categories)}</span>
+          <div className="paper-meta-footer">
+            <span className="paper-category">{formatCategory(paper.categories)}</span>
+            {paper.similarity_score !== null && paper.similarity_score !== undefined && (
+              <span className="paper-similarity">Match: {formatSimilarityScore(paper.similarity_score)}</span>
+            )}
+          </div>
         </div>
       </div>
-      <p className="paper-abstract">{paper.abstract}</p>
+      <p className="paper-abstract">{truncateAbstract(paper.abstract)}</p>
     </div>
   );
 
   const renderPagination = () => {
     if (totalPages <= 1) return null;
 
-    const pages = [];
-    for (let i = 1; i <= totalPages; i++) {
-      pages.push(
-        <button
-          key={i}
-          className={`pagination-button ${currentPage === i ? 'active' : ''}`}
-          onClick={() => handlePageChange(i)}
-        >
-          {i}
-        </button>
-      );
-    }
+    // Show limited page numbers for better UX
+    const getPageNumbers = () => {
+      const pages = [];
+      const maxVisible = 5;
+      let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+      let end = Math.min(totalPages, start + maxVisible - 1);
+      
+      if (end - start + 1 < maxVisible) {
+        start = Math.max(1, end - maxVisible + 1);
+      }
+
+      for (let i = start; i <= end; i++) {
+        pages.push(i);
+      }
+      return pages;
+    };
 
     return (
       <div className="pagination">
         <button
           className="pagination-button"
           onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
+          disabled={!hasPrevious || loading}
         >
           Previous
         </button>
-        {pages}
+        {getPageNumbers().map(page => (
+          <button
+            key={page}
+            className={`pagination-button ${currentPage === page ? 'active' : ''}`}
+            onClick={() => handlePageChange(page)}
+            disabled={loading}
+          >
+            {page}
+          </button>
+        ))}
         <button
           className="pagination-button"
           onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
+          disabled={!hasNext || loading}
         >
           Next
         </button>
+        <span className="pagination-info">
+          Page {currentPage} of {totalPages} ({totalResults} results)
+        </span>
       </div>
     );
   };
@@ -339,30 +290,39 @@ const ScholarStream = () => {
     <>
       {renderSearchSection()}
       
+      {error && (
+        <div className="error-message">
+          <span className="error-icon">⚠️</span>
+          <p>{error}</p>
+        </div>
+      )}
+      
       {loading ? (
         <div className="loading">
           <div className="spinner"></div>
-          <p>Loading papers...</p>
+          <p>Searching papers...</p>
         </div>
       ) : (
         <>
           <div className="papers-section">
-            <h2 className="section-title">
-              Research Papers
-            </h2>
+            {isSearchMode && (
+              <h2 className="section-title">
+                Search Results {totalResults > 0 && `(${totalResults} papers found)`}
+              </h2>
+            )}
             
             {papers.length > 0 ? (
               <div className="papers-grid">
-                {papers.slice((currentPage - 1) * PAPERS_PER_PAGE, currentPage * PAPERS_PER_PAGE).map(renderPaperCard)}
+                {papers.map(renderPaperCard)}
               </div>
             ) : (
               <div className="no-results">
-                <div className="no-results-icon">📝</div>
-                <p>{isSearchMode ? 'No papers found for your search.' : 'No papers available.'}</p>
+                <div className="no-results-icon">🔍</div>
+                <p>{isSearchMode ? 'No papers found for your search. Try different keywords.' : 'Enter a search query to find research papers.'}</p>
               </div>
             )}
             
-            {renderPagination()}
+            {papers.length > 0 && renderPagination()}
           </div>
         </>
       )}
@@ -445,7 +405,7 @@ const ScholarStream = () => {
           
           <div className="paper-links">
             <a 
-              href={`https://arxiv.org/abs/${selectedPaper.id}`} 
+              href={selectedPaper.arxiv_url || `https://arxiv.org/abs/${selectedPaper.id}`} 
               target="_blank" 
               rel="noopener noreferrer"
               className="paper-link"
@@ -453,7 +413,7 @@ const ScholarStream = () => {
               View on ArXiv
             </a>
             <a 
-              href={`https://arxiv.org/pdf/${selectedPaper.id}`} 
+              href={selectedPaper.pdf_url || `https://arxiv.org/pdf/${selectedPaper.id}`} 
               target="_blank" 
               rel="noopener noreferrer"
               className="paper-link"
@@ -465,17 +425,22 @@ const ScholarStream = () => {
         
         <div className="recommendations-section">
           <h3 className="recommendations-title">
-            Recommended Papers (using {selectedModel.replace('_', ' ').toUpperCase()})
+            Recommended Papers (using {selectedModel.replace(/_/g, ' ').toUpperCase()})
           </h3>
           
-          {loading ? (
+          {recommendationsLoading ? (
             <div className="loading">
               <div className="spinner"></div>
               <p>Loading recommendations...</p>
             </div>
-          ) : (
+          ) : recommendations.length > 0 ? (
             <div className="papers-grid">
               {recommendations.map(renderPaperCard)}
+            </div>
+          ) : (
+            <div className="no-results">
+              <div className="no-results-icon">📚</div>
+              <p>No recommendations available for this paper.</p>
             </div>
           )}
         </div>

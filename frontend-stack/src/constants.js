@@ -2,12 +2,12 @@ export const API_URL = "https://backend-stack-142896340374.asia-south1.run.app/c
 
 export const INDIC_COMMERCE_API_URL = "https://indic-commerce-142896340374.asia-south1.run.app";
 
-export const SCHOLAR_STREAM_API_URL = "https://backend-stack-142896340374.asia-south1.run.app";
+export const SCHOLAR_STREAM_API_URL = "https://scholar-stream-gateway-142896340374.asia-south1.run.app/api/v1";
 
 export const SCHOLAR_STREAM_ENDPOINTS = {
     SEARCH: "/scholar-stream/search",
     RECOMMENDATIONS: "/scholar-stream/recommendations",
-    PAPER_DETAILS: "/scholar-stream/paper"
+    PAPER: "/scholar-stream/paper"
 };
 
 export const RECOMMENDATION_MODELS = {
