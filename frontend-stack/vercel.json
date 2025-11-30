@@ -12,6 +12,10 @@
         {
         "src": "/indic-commerce/products",
         "dest": "/index.html"
+        },
+        {
+        "src": "/scholar-stream",
+        "dest": "/index.html"
         }
     ]
 }
