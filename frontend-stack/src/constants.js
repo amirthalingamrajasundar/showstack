@@ -2,6 +2,20 @@ export const API_URL = "https://backend-stack-142896340374.asia-south1.run.app/c
 
 export const INDIC_COMMERCE_API_URL = "https://indic-commerce-142896340374.asia-south1.run.app";
 
+export const SCHOLAR_STREAM_API_URL = "https://backend-stack-142896340374.asia-south1.run.app";
+
+export const SCHOLAR_STREAM_ENDPOINTS = {
+    SEARCH: "/scholar-stream/search",
+    RECOMMENDATIONS: "/scholar-stream/recommendations",
+    PAPER_DETAILS: "/scholar-stream/paper"
+};
+
+export const RECOMMENDATION_MODELS = {
+    TFIDF: "tfidf",
+    BASE_TRANSFORMER: "base_transformer", 
+    FINE_TUNED_TRANSFORMER: "fine_tuned_transformer"
+};
+
 export const PROFILE_LINKS = {
     "email": "amirthalingamrajasundar@gmail.com",
     "linkedin": "https://www.linkedin.com/in/amirthalingam-rajasundar/",

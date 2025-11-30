@@ -89,7 +89,24 @@ const Portfolio = () => {
                   PageRank Visualizer
                 </Link>
               }
-              secondary="A web application demonstrating the PageRank algorithm with interactive visualizations and charts."
+              secondary="A web application demonstrating the PageRank algorithm with interactive visualizations and charts"
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <Code />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Link
+                  href="/scholar-stream"
+                  target="_blank"
+                  underline="hover"
+                >
+                  Scholar Stream
+                </Link>
+              }
+              secondary="Research paper recommendation service using fine tuned sentence transformers"
             />
           </ListItem>
           <ListItem>
