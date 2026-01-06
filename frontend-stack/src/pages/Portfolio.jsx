@@ -82,6 +82,23 @@ const Portfolio = () => {
             <ListItemText
               primary={
                 <Link
+                  href="https://github.com/amirthalingamrajasundar/RL-Experiments"
+                  target="_blank"
+                  underline="hover"
+                >
+                  Reinforcement Learning Experiments
+                </Link>
+              }
+              secondary="Various Reinforcement Learning experiments done during the RL course"
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <Code />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Link
                   href="/page-rank"
                   target="_blank"
                   underline="hover"
